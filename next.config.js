@@ -2,6 +2,7 @@
 const path = require('path')
 const nextConfig = {
   reactStrictMode: true,
+  swcMinify: true,
   experimental: {
     appDir: false,
   },
@@ -9,23 +10,30 @@ const nextConfig = {
     includePaths: [path.join(__dirname, 'styles')],
   },
   webpack: (config) => {
-    config.module.rules.push({
-      test: /\.svg$/i,
-      issuer: /\.[jt]sx?$/,
-      use: {
-        loader: '@svgr/webpack',
-        options: {
-          svgoConfig: {
-            plugins: [
-              {
-                name: 'removeViewBox',
-                active: false,
-              },
-            ],
+    config.module.rules.push(
+      {
+        test: /\.svg$/i,
+        issuer: /\.[jt]sx?$/,
+        use: {
+          loader: '@svgr/webpack',
+          options: {
+            svgoConfig: {
+              plugins: [
+                {
+                  name: 'removeViewBox',
+                  active: false,
+                },
+              ],
+            },
           },
         },
       },
-    })
+      {
+        test: /\.([jt]sx?)?$/,
+        use: 'swc-loader',
+        exclude: /node_modules/,
+      }
+    )
     return config
   },
 }
