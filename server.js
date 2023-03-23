@@ -11,8 +11,8 @@ const app = next({ dev, hostname, port })
 const handle = app.getRequestHandler()
 
 const httpsOptions = {
-  key: fs.readFileSync('./kim.key'),
-  cert: fs.readFileSync('./kim.crt'),
+  key: fs.readFileSync('./dev_ssl.key'),
+  cert: fs.readFileSync('./dev_ssl.crt'),
 }
 
 app.prepare().then(() => {
