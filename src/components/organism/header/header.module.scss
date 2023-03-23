@@ -1,0 +1,45 @@
+.header {
+  position: relative;
+  z-index: 500;
+  min-width: 1260px;
+  display: flex;
+  flex-flow: row wrap;
+  width: 100%;
+  height: 64px;
+  letter-spacing: -1px;
+  background-color: #223cb5;
+  .link_saramin {
+    display: flex;
+    width: 64px;
+    height: 64px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    background: #162a8a url(//www.saraminimage.co.kr/sri/temp/ico_home_200622_2.png) center
+      no-repeat;
+  }
+  .area_logo {
+    display: flex;
+    .link_logo {
+      margin: 0 19px;
+      padding-top: 2px;
+      width: 58px;
+      height: 64px;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      &:after {
+        display: inline-block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        width: 1px;
+        height: 100%;
+        background-color: #000;
+      }
+      svg {
+        -webkit-transform: translate(0, 22px);
+        transform: translate(0, 22px);
+      }
+    }
+  }
+}

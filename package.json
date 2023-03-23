@@ -7,7 +7,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "dev:custom": "node server.js"
   },
   "keywords": [],
   "author": "",
@@ -17,6 +18,8 @@
     "next": "^13.2.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-query": "^3.39.3",
+    "sass": "^1.59.3",
     "zustand": "^4.3.6"
   },
   "devDependencies": {
