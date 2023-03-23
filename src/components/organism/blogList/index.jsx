@@ -1,13 +1,25 @@
-export default function BlogList({ data }) {
+import { useCallback, useState } from 'react'
+
+export default function BlogList() {
+  const [userData, setUserData] = useState([])
+  const getUserList = useCallback(() => {
+    fetch('/users')
+      .then((res) => res.json())
+      .then(setUserData)
+  }, [])
+  if (userData.length > 0)
+    return (
+      <div>
+        <ul>
+          {userData.map((user) => (
+            <li key={user.id}>{user.name}</li>
+          ))}
+        </ul>
+      </div>
+    )
   return (
-    <>
-      <ul>
-        {data.map((item) => (
-          <li key={item.userId}>
-            <p>{item.name}</p>
-          </li>
-        ))}
-      </ul>
-    </>
+    <button type="button" onClick={getUserList}>
+      유저 목록 불러오기
+    </button>
   )
 }
