@@ -1,5 +1,6 @@
 import '@src/styles/globals.css'
 
+import React from 'react'
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
 import { DefaultLayout as Layout } from '@components/layout'
@@ -20,11 +21,9 @@ if (process.env.NODE_ENV === 'development') {
   }
 }
 
-const queryClient = new QueryClient()
-
 export default function App({ Component, pageProps }) {
   const getLayout = Component.getLayout || defaultLayout
-
+  const [queryClient] = React.useState(() => new QueryClient())
   return (
     <QueryClientProvider client={queryClient}>
       <Hydrate state={pageProps.dehydratedSate}>

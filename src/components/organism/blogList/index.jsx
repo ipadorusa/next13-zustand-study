@@ -1,25 +1,27 @@
-import { useCallback, useState } from 'react'
-
+import React, { useState } from 'react'
+import { usePosts } from '@src/hooks'
 export default function BlogList() {
-  const [userData, setUserData] = useState([])
-  const getUserList = useCallback(() => {
-    fetch('/users')
-      .then((res) => res.json())
-      .then(setUserData)
-  }, [])
-  if (userData.length > 0)
-    return (
-      <div>
-        <ul>
-          {userData.map((user) => (
-            <li key={user.id}>{user.name}</li>
-          ))}
-        </ul>
-      </div>
-    )
+  const [postCount, setPostCount] = useState(10)
+  const { data, isLoading, isFetching } = usePosts(postCount)
+  if (isLoading) return <div>Loading</div>
   return (
-    <button type="button" onClick={getUserList}>
-      유저 목록 불러오기
-    </button>
+    <section>
+      <h3>list</h3>
+      <ul>
+        {data?.map((post, index) => (
+          <li key={post.id}>
+            <div>
+              <span>{index + 1}. </span>
+              <a href="#">{post.title}</a>
+            </div>
+          </li>
+        ))}
+      </ul>
+      {postCount <= 90 && (
+        <button onClick={() => setPostCount(postCount + 10)} disabled={isFetching}>
+          {isFetching ? 'Loading...' : 'Show More'}
+        </button>
+      )}
+    </section>
   )
 }
