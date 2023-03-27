@@ -1,0 +1,26 @@
+.sch_table {
+  display: grid;
+  grid-template-areas: 'Sun Mon Tue Wed Thu Fri Sat';
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  border-bottom: 1px solid #ddd;
+  .day_label {
+    height: 30px;
+    grid-column: span 1;
+    text-align: center;
+    font-weight: bold;
+    border-bottom: 1px solid #ddd;
+  }
+  .date_cell {
+    border: 1px solid black;
+    text-align: center;
+  }
+  .date {
+    font-size: 12px;
+    text-align: center;
+    height: 30px;
+  }
+  .empty {
+    font-size: 12px;
+  }
+}

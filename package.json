@@ -13,6 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "clsx": "^1.2.1",
     "immer": "^9.0.19",
     "ky-universal": "^0.11.0",
     "next": "^13.2.4",
