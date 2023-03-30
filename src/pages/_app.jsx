@@ -1,25 +1,25 @@
-import '@src/styles/globals.css'
-
 import React from 'react'
-import { Hydrate, QueryClient, QueryClientProvider } from 'react-query'
-import { ReactQueryDevtools } from 'react-query/devtools'
+import { Hydrate, QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { DefaultLayout as Layout } from '@components/layout'
+import '@src/styles/globals.scss'
+import '@src/styles/calendar.scss'
 
-const isServer = process.browser ? false : true
+// const isServer = process.browser ? false : true
 
-if (process.env.NODE_ENV === 'development') {
-  if (isServer) {
-    ;(async () => {
-      const { server } = await import('../mocks/server')
-      server.listen()
-    })()
-  } else {
-    ;(async () => {
-      const { worker } = await import('../mocks/browser')
-      worker.start()
-    })()
-  }
-}
+// if (process.env.NODE_ENV === 'development') {
+//   if (isServer) {
+//     ;(async () => {
+//       const { server } = await import('../mocks/server')
+//       server.listen()
+//     })()
+//   } else {
+//     ;(async () => {
+//       const { worker } = await import('../mocks/browser')
+//       worker.start()
+//     })()
+//   }
+// }
 
 export default function App({ Component, pageProps }) {
   const getLayout = Component.getLayout || defaultLayout

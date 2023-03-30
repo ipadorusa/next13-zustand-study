@@ -3,7 +3,9 @@ import { usePosts } from '@src/hooks'
 export default function BlogList() {
   const [postCount, setPostCount] = useState(10)
   const { data, isLoading, isFetching } = usePosts(postCount)
+
   if (isLoading) return <div>Loading</div>
+
   return (
     <section>
       <h3>list</h3>

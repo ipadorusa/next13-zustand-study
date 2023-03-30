@@ -1,18 +1,21 @@
-import { QueryClient, dehydrate } from 'react-query'
-import { BlogList } from '@/src/components/organism'
-import { fetchPosts } from '@src/hooks'
+import { QueryClient, dehydrate, useQuery } from '@tanstack/react-query'
+import { AboutList } from '@/src/components/organism'
+import { fetchPosts, usePosts } from '@src/hooks'
 
 export default function Page() {
-  return <BlogList />
+  const { ...props } = useQuery({
+    queryKey: ['posts'],
+    queryFn: () => fetchPosts(10)
+  })
+  return <AboutList props={props} />
 }
 
-export async function getStaticProps() {
-  const queryClient = new QueryClient()
-
-  await queryClient.prefetchQuery({
-    queryKey: ['posts'],
-    queryFn: () => fetchPosts()
+export async function getServerSideProps() {
+  const queryClient = new QueryClient({
+    staleTime: 60 * 1000
   })
+
+  await queryClient.prefetchQuery({ queryKey: ['posts'], queryFn: () => fetchPosts(10) })
 
   return {
     props: {
